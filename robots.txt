@@ -26,3 +26,5 @@ User-agent: meta-externalagent
 Allow: /
 
 Sitemap: https://raineblog.dpdns.org/whk/sitemap.xml
+Sitemap: https://raineblog.dpdns.org/whk/feed_rss_updated.xml
+sitemap: https://raineblog.dpdns.org/whk/feed_rss_created.xml
