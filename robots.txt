@@ -8,7 +8,6 @@ Sitemap: https://raineblog.dpdns.org/whk/feed_rss_created.xml
 
 # Main Site Sitemaps
 Sitemap: https://raineblog.dpdns.org/sitemap.xml
-Sitemap: https://raineblog.dpdns.org/index.xml
 Sitemap: https://raineblog.dpdns.org/rss.xml
 
 # Maximum crawl speed for major search engines
