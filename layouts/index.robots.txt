@@ -8,7 +8,6 @@ Sitemap: https://raineblog.dpdns.org/whk/feed_rss_created.xml
 
 # Main Site Sitemaps
 Sitemap: {{ "sitemap.xml" | absURL }}
-Sitemap: {{ "index.xml" | absURL }}
 Sitemap: {{ "rss.xml" | absURL }}
 
 # Maximum crawl speed for major search engines
