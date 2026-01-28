@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Extra Sitemaps for Deep Indexing
+Sitemap: https://raineblog.dpdns.org/whk/sitemap.xml
+Sitemap: https://raineblog.dpdns.org/whk/feed_rss_updated.xml
+Sitemap: https://raineblog.dpdns.org/whk/feed_rss_created.xml
+
+# Main Site Sitemaps
+Sitemap: https://raineblog.dpdns.org/sitemap.xml
+Sitemap: https://raineblog.dpdns.org/index.xml
+Sitemap: https://raineblog.dpdns.org/rss.xml
+
+# Maximum crawl speed for major search engines
+User-agent: Googlebot
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Crawl-delay: 0
+
+User-agent: Bingbot
+Crawl-delay: 0
