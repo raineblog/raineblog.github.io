@@ -17,13 +17,13 @@ author: "RainPPR"
 
 在数字时代的浪潮中，博客不仅仅是文字的载体，更是审美与灵魂的延伸。我们追求的是一种“此时无声胜有声”的静谧感。正文字体应当具有良好的可读性，行间距与字间距的呼吸感决定了读者的长文阅读体验。无论是宋体的古风雅致，还是黑体的现代极简，都在每一行代码的编织下，展现出独特的赛博美学。
 
-**经典测试段落：**人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。每一个生命都是一段孤独的旅程，而文字则是我们在茫茫大海中投下的漂流瓶，寻找着频率相近的共鸣。
+**经典测试段落**：人人生而自由，在尊严和权利上一律平等。他们赋有理性和良心，并应以兄弟关系的精神相对待。每一个生命都是一段孤独的旅程，而文字则是我们在茫茫大海中投下的漂流瓶，寻找着频率相近的共鸣。
 
 ### 1.2 英文排版 (English Text)
 
 The quick brown fox jumps over the lazy dog. Typography is the art and technique of arranging type to make written language legible, readable, and appealing when displayed. The arrangement of type involves selecting typefaces, point sizes, line lengths, line-spacing (leading), and letter-spacing (tracking), and adjusting the space between pairs of letters (kerning).
 
-**Classic Journalism Opening:** "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort."
+**Classic Journalism Opening**: "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort."
 
 ---
 
