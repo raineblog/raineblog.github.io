@@ -1,0 +1,270 @@
+# ==========================================
+# 1. 站点基础认证与元数据
+# ==========================================
+baseURL: https://raineblog.dpdns.org/
+title: RaineBlog
+theme: PaperMod
+timeZone: Asia/Shanghai
+copyright: '<span>Content <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></span> · <span>Code <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener">MIT</a></span>'
+
+# ==========================================
+# 2. 站点行为与构建设置
+# ==========================================
+pagination:
+  pagerSize: 20
+
+enableEmoji: true
+enableGitInfo: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableRelatedContent: true
+
+languageCode: zh-cn
+defaultContentLanguage: zh-cn
+defaultContentLanguageInSubdir: false
+
+# Taxonomies for better internal linking (Deep SEO)
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
+# 2. 彻底的 URL 规范化 (防止 Google 索引 http 和 https 两个版本)
+canonifyURLs: true
+removePathAccents: true
+
+canonicalifyURLs: false # 建议设为 false，由我们在模板中手动完全控制 Canonical 标签
+disablePathToLower: false # 建议为 false，保持 URL 小写是 SEO 最佳实践
+
+# 资源压缩与指纹设置 (Hardcore Minify & Fingerprinting)
+minify:
+  disableCSS: false
+  disableHTML: false
+  disableJS: false
+  disableSVG: false
+  disableJSON: false
+  disableXML: false
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepWhitespace: false
+      keepEndTags: true
+      keepDefaultAttrVals: true
+      keepQuotes: false
+      keepComments: false # 彻底移除注释
+
+# 构建参数
+build:
+  writeStats: true
+
+# 资产指纹与缓存控制
+mediaTypes:
+  "text/html":
+    suffixes:
+      - html
+
+# 图片处理设置
+imaging:
+  anchor: Smart
+  bgColor: '#ffffff'
+  quality: 85
+  resampleFilter: Lanczos
+
+# ==========================================
+# 3. 内容渲染 (Markup)
+# ==========================================
+markup:
+  goldmark:
+    extensions:
+      definitionList: true
+      footnote: true
+      linkify: true
+      strikethrough: true
+      table: true
+      taskList: true
+      typographer: true
+      passthrough:
+        enable: true
+        delimiters:
+          block: [["\\[", "\\]"], ["$$", "$$"]]
+          inline: [["\\(", "\\)"], ["$", "$"]]
+    renderer:
+      unsafe: true # 允许在 Markdown 中使用 HTML
+  highlight:
+    noClasses: false
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: true
+    lineNos: true
+    style: monokai
+  tableOfContents:
+    startLevel: 2
+    endLevel: 3
+    ordered: false
+
+# ==========================================
+# 4. 输出格式与 SEO
+# ==========================================
+# 站点地图配置 (High Intensity Crawling)
+sitemap:
+  changefreq: daily
+  priority: 0.8
+  filename: sitemap.xml
+
+# 输出文件配置
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # 首页生成 JSON 用于全站搜索
+    - llms # 自定义 LLMS 格式
+    - SITEMAP
+    - ROBOTS
+  page:
+    - HTML
+    - AMP  # 单页额外生成 AMP 移动端加速页
+
+outputFormats:
+  RSS:
+    baseName: "rss"
+    mediaType: "application/rss+xml"
+  llms:
+    mediaType: "text/plain"
+    baseName: "llms"
+    isPlainText: true
+    notAlternative: true
+
+# ==========================================
+# 5. 导航菜单 (Menu)
+# ==========================================
+menu:
+  main:
+    - name: "首页"
+      url: "/"
+      weight: 10
+    - name: "文章"
+      url: "/posts"
+      weight: 20
+    - name: "存档"
+      url: "/archives"
+      weight: 30
+    - name: "分类"
+      url: /categories/
+      weight: 40
+    - name: "标签"
+      url: /tags/
+      weight: 50
+    - name: "搜索"
+      url: "/search"
+      weight: 60
+    - name: "关于"
+      url: "/about"
+      weight: 70
+
+# ==========================================
+# 6. 主题参数配置 (PaperMod Params)
+# ==========================================
+params:
+  env: production
+  title: RaineBlog
+  description: "RaineBlog - 探索赛博美学与前沿技术的数字花园。专注于 Hugo 排版、KaTeX 科学公式渲染及现代 Web 开发实践。"
+  keywords: ["RaineBlog", "Hugo", "PaperMod", "KaTeX", "赛博美学", "前端开发", "科学公式"]
+  author: RainPPR
+
+  # 主题外观自适应
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  # UI 功能开关
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  # schema: true # Disabled to avoid PaperMod template errors, using custom seo_advanced.html instead
+  comments: true
+  hidemenu: false
+  showtoc: true
+  tocopen: false
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+
+  # Search Engine Verification & Analytics
+  analytics:
+    google:
+      SiteVerificationTag: "" # Add your tag here
+    bing:
+      SiteVerificationTag: ""
+    yandex:
+      SiteVerificationTag: ""
+
+  giscus:
+    data_repo: "raineblog/giscus"
+    data_repo_id: "R_kgDOMhpKmw"
+    data_category: "Announcements"
+    data_category_id: "DIC_kwDOMhpKm84ChhZ7"
+
+  # 封面与资产加载
+  images: ["images/cover.png"]
+  assets:
+    favicon: "/favicon.png"
+    favicon16x16: "/favicon.png"
+    favicon32x32: "/favicon.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+    safari_pinned_tab: "safari-pinned-tab.svg"
+    theme_color: "#2e2e33" # Mobile SEO theme color
+    disableFingerprinting: false # 强制开启指纹
+
+  # 首页个人简介模式 (Profile Mode)
+  profileMode:
+    enabled: true
+    title: RaineBlog
+    subtitle: RainPPR's Blog
+    imageUrl: "//avatars.githubusercontent.com/u/197091820?v=4"
+    imageTitle: "RainPPR"
+    imageWidth: 120
+    imageHeight: 120
+    buttons:
+      - name: "所有文章"
+        url: "posts"
+      - name: "标签云"
+        url: "tags"
+
+  # 社交媒体图标
+  socialIcons:
+    - name: github
+      url: "https://github.com/raineblog" # 建议填入具体 ID
+    - name: x
+      url: "https://x.com/@rainppr2008"
+    # - name: email
+    #   url: "mailto:yourname@example.com"
+
+  # 页面顶部标签
+  label:
+    text: "Home"
+    icon: "/apple-touch-icon.png"
+    iconHeight: 35
+
+  # 文章编辑源码链接
+  editPost:
+    URL: "https://github.com/raineblog/raineblog.github.io/tree/main/content"
+    Text: "查看源码"
+    appendFilePath: true
+
+  # 搜索算法配置 (Fuse.js)
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    limit: 20
+    keys: ["title", "permalink", "summary", "content"]
+
+  gtm_id: GTM-NNRJ8F2J

@@ -1,0 +1,167 @@
+{{- /* Metadata for SEO and Social Media */ -}}
+
+{{- if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Title }}",
+  "url": "{{ .Site.BaseURL }}",
+  "description": "{{ .Site.Params.description }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}",
+    "sameAs": [
+      "https://github.com/raineblog",
+      "https://x.com/rainppr2008"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.Params.assets.favicon | absURL }}"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.BaseURL }}search/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{{- else if .IsPage }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Title }}",
+  "name": "{{ .Title }}",
+  "description": "{{ .Description | default .Summary }}",
+  "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Params.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ .Site.Title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.Params.assets.favicon | absURL }}"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  },
+  "image": "{{ if .Params.images }}{{ index .Params.images 0 | absURL }}{{ else if .Site.Params.images }}{{ index .Site.Params.images 0 | absURL }}{{ end }}"
+}
+</script>
+
+{{- /* Breadcrumbs Schema */ -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ .Site.BaseURL }}"
+    }
+    {{- $position := 1 }}
+    {{- range $element := (split .RelPermalink "/") }}
+      {{- if and $element (ne $element "posts") }}
+        {{- $position = add $position 1 }},
+        {
+          "@type": "ListItem",
+          "position": {{ $position }},
+          "name": "{{ $element | humanize | title }}",
+          "item": "{{ $.Site.BaseURL }}{{ $element | strings.TrimPrefix "/" }}"
+        }
+      {{- end }}
+    {{- end }}
+  ]
+}
+</script>
+{{- end }}
+
+<!-- Custom OpenGraph and Twitter Tags -->
+<meta property="og:title" content="{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:locale" content="zh_CN" />
+{{- if .Params.images }}
+{{- range .Params.images }}
+<meta property="og:image" content="{{ . | absURL }}" />
+{{- end }}
+{{- else if .Site.Params.images }}
+<meta property="og:image" content="{{ index .Site.Params.images 0 | absURL }}" />
+{{- end }}
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}" />
+<meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}" />
+<meta name="twitter:site" content="@rainppr2008" />
+<meta name="twitter:creator" content="@rainppr2008" />
+{{- if .Params.images }}
+<meta name="twitter:image" content="{{ index .Params.images 0 | absURL }}" />
+{{- else if .Site.Params.images }}
+<meta name="twitter:image" content="{{ index .Site.Params.images 0 | absURL }}" />
+{{- end }}
+
+<!-- Dublin Core Metadata for institutional SEO -->
+<meta name="DC.title" content="{{ if .Title }}{{ .Title }}{{ else }}{{ .Site.Title }}{{ end }}" />
+<meta name="DC.creator" content="{{ .Site.Params.author }}" />
+<meta name="DC.subject" content="{{ range .Site.Params.keywords }}{{ . }}, {{ end }}" />
+<meta name="DC.description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}" />
+<meta name="DC.publisher" content="{{ .Site.Title }}" />
+<meta name="DC.date" content="{{ .Date.Format "2006-01-02" }}" />
+<meta name="DC.type" content="Text" />
+<meta name="DC.format" content="text/html" />
+<meta name="DC.language" content="zh-CN" />
+<meta name="DC.coverage" content="Shanghai, China" />
+
+<!-- Advanced GEO Configuration -->
+<meta name="geo.region" content="CN-SH" />
+<meta name="geo.placename" content="Shanghai" />
+<meta name="geo.position" content="31.2304;121.4737" />
+<meta name="ICBM" content="31.2304, 121.4737" />
+
+<!-- Localization & Search Engine Optimization -->
+<link rel="alternate" hreflang="zh-Hans" href="{{ .Permalink }}" />
+<link rel="alternate" hreflang="zh-CN" href="{{ .Permalink }}" />
+<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+
+<!-- Technical Performance & Resource Discovery -->
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="https://avatars.githubusercontent.com">
+<link rel="dns-prefetch" href="https://giscus.app">
+
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://avatars.githubusercontent.com" crossorigin>
+
+<!-- Critical Resource Preloading -->
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@raineblog/mkdocs-fontkit@latest/dist/fonts.min.css" as="style">
+
+<!-- Security & Trust Indicators -->
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="me" href="https://github.com/raineblog">
+
+<!-- Search Engine Hinting -->
+{{- if .IsHome -}}
+<link rel="prerender" href="{{ "posts" | absURL }}">
+{{- end }}
+
+<!-- Mobile & Platform Experience -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}">
+<meta name="theme-color" content="{{ .Site.Params.assets.theme_color | default "#2e2e33" }}">

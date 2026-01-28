@@ -1,0 +1,43 @@
+/*
+This is just a placeholder blank stylesheet so as to support adding custom styles budled with theme's default styles
+
+Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
+*/
+/* Custom Healing Style */
+:root {
+    --font-family: 'Aleo', "FZNewShuSong", 'Zen Old Mincho', 'Noto Serif SC', 'source-han-serif-sc', serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Make content area slightly soft and readable */
+.main, .header, .footer {
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Soft card look for posts */
+.post-entry {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.post-entry:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.dark .post-entry {
+    background: rgba(30, 30, 30, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}

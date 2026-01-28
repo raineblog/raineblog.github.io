@@ -1,0 +1,54 @@
+{{- if .Site.Params.giscus -}}
+<div id="__comments" class="giscus" data-no-instant></div>
+<script>
+    function getGiscusTheme() {
+        const theme = document.querySelector("html").dataset.theme;
+        if (theme === "auto") {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        return theme || 'light';
+    }
+
+    function updateGiscusTheme() {
+        const theme = getGiscusTheme();
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (iframe) {
+            iframe.contentWindow.postMessage({
+                giscus: { setConfig: { theme: theme } }
+            }, 'https://giscus.app');
+        }
+    }
+
+    const giscusAttributes = {
+        "src": "https://giscus.app/client.js",
+        "data-repo": "{{ .Site.Params.giscus.data_repo }}",
+        "data-repo-id": "{{ .Site.Params.giscus.data_repo_id }}",
+        "data-category": "{{ .Site.Params.giscus.data_category }}",
+        "data-category-id": "{{ .Site.Params.giscus.data_category_id }}",
+        "data-mapping": "pathname",
+        "data-strict": "1",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "top",
+        "data-theme": getGiscusTheme(),
+        "data-lang": "zh-CN",
+        "data-loading": "lazy",
+        "crossorigin": "anonymous",
+        "async": ""
+    };
+
+    const giscusScript = document.createElement("script");
+    Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+    document.getElementById("__comments").appendChild(giscusScript);
+
+    // Hardened synchronization using MutationObserver
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === "attributes" && mutation.attributeName === "data-theme") {
+                updateGiscusTheme();
+            }
+        });
+    });
+    observer.observe(document.querySelector("html"), { attributes: true });
+</script>
+{{- end -}}

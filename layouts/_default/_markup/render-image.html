@@ -1,0 +1,41 @@
+{{- $img := "" }}
+{{- $isRemote := or (hasPrefix .Destination "http://") (hasPrefix .Destination "https://") (hasPrefix .Destination "//") }}
+
+{{- if not $isRemote }}
+  {{- $img = .Page.Resources.GetMatch .Destination }}
+  {{- if not $img }}
+    {{- $img = resources.Get .Destination }}
+  {{- end }}
+{{- end }}
+
+{{- if $img }}
+  {{- $isSVG := eq $img.MediaType.SubType "svg" }}
+  {{- if $isSVG }}
+    <img src="{{ $img.RelPermalink }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }} loading="lazy">
+  {{- else }}
+    {{- $webp := $img.Resize "1200x webp" }}
+    {{- $medium := $img.Resize "800x webp" }}
+    {{- $small := $img.Resize "400x webp" }}
+    
+    <figure class="image-container">
+      <picture>
+        <source srcset="{{ $webp.RelPermalink }}" media="(min-width: 1024px)" type="image/webp">
+        <source srcset="{{ $medium.RelPermalink }}" media="(min-width: 640px)" type="image/webp">
+        <img 
+          src="{{ $small.RelPermalink }}" 
+          alt="{{ .Text }}" 
+          {{ with .Title }} title="{{ . }}" {{ end }}
+          loading="lazy"
+          decoding="async"
+          width="{{ $img.Width }}"
+          height="{{ $img.Height }}"
+          style="max-width: 100%; height: auto;"
+        >
+      </picture>
+      {{- if .Text }}<figcaption>{{ .Text }}</figcaption>{{ end }}
+    </figure>
+  {{- end }}
+{{- else }}
+  {{- /* Remote images or missing local resources */ -}}
+  <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }} loading="lazy" decoding="async" style="max-width: 100%; height: auto;">
+{{- end }}

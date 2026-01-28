@@ -1,0 +1,18 @@
+# {{ .Site.Title }} - AI Knowledge Base
+
+{{ .Site.Params.description }}
+
+## About this site
+Author: {{ .Site.Params.author }}
+Location: Shanghai, China (CN-SH)
+License: CC BY 4.0
+
+## Recent Content
+{{ range first 50 (where .Site.RegularPages "Type" "posts") }}
+- [{{ .Title }}]({{ .Permalink }}): {{ .Summary | plainify }}
+{{ end }}
+
+## Content Tags
+{{ range .Site.Taxonomies.tags }}
+- {{ .Page.Title }}
+{{ end }}
