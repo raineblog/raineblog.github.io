@@ -3,8 +3,6 @@ Allow: /
 
 # Extra Sitemaps for Deep Indexing
 Sitemap: https://raineblog.dpdns.org/whk/sitemap.xml
-Sitemap: https://raineblog.dpdns.org/whk/feed_rss_updated.xml
-Sitemap: https://raineblog.dpdns.org/whk/feed_rss_created.xml
 
 # Main Site Sitemaps
 Sitemap: https://raineblog.dpdns.org/sitemap.xml
