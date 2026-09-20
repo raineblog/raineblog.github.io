@@ -24,7 +24,7 @@
 # AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.
 
 User-Agent: *
-Content-Signal: ai-train=yes, search=yes, ai-input=yes
+Content-Signal: ai-train=yes, search=yes, ai-input=yes, use=full
 Allow: /
 
 # Extra Sitemaps for Deep Indexing
